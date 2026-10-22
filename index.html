@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="A smooth, textured 3D portrait of Mahinda Rajapaksa. Rotate, zoom, inspect, or download the GLB model.">
+<meta name="theme-color" content="#14202e">
+<title>Mahinda Rajapaksa | 3D portrait</title>
+<script type="module" src="./model-viewer.min.js"></script>
+<style>
+:root{color-scheme:dark;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#101923;color:#f2f5fa}
+*{box-sizing:border-box}body{margin:0}main{max-width:1220px;margin:auto;padding:30px 24px 36px}
+header{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:22px}h1{font-size:clamp(25px,4vw,37px);letter-spacing:-.03em;line-height:1.15;margin:0 0 8px}
+p{color:#bdcada;line-height:1.6;margin:0}.download,button{border:1px solid #4c637f;border-radius:9px;color:#f4f7fb;background:#23374c;padding:11px 16px;text-decoration:none;font:inherit;cursor:pointer;white-space:nowrap}
+.download{background:#244f79;border-color:#5b8dbb;font-weight:600}.download:hover,button:hover{background:#355c81}button:focus-visible,a:focus-visible{outline:3px solid #91c7ff;outline-offset:4px}
+.stage{position:relative;border:1px solid #3a4c62;border-radius:18px;overflow:hidden;background:radial-gradient(ellipse at 50% 40%,#3c4b5d,#15202d)}
+model-viewer{width:100%;height:65vh;min-height:420px;max-height:800px;--poster-color:transparent}
+nav{display:flex;flex-wrap:wrap;gap:9px;padding:15px 0;align-items:center}#status{font-size:14px;color:#bdcada;margin-left:auto}
+.facts{display:flex;flex-wrap:wrap;gap:10px 28px;border-top:1px solid #314154;padding-top:18px;color:#c4d1df;font-size:14px}
+footer{margin-top:20px;color:#aebdd0;font-size:13px;line-height:1.7}footer a{color:#a9d4ff}small{font-size:13px}
+@media(max-width:650px){main{padding:22px 15px}header{align-items:flex-start;flex-direction:column}model-viewer{min-height:390px;height:58vh}#status{margin-left:0;width:100%;padding:4px 0}button{padding:9px 12px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style>
+</head>
+<body><main>
+<header><div><h1>Mahinda Rajapaksa</h1><p>A 3D portrait. Drag to rotate; scroll or pinch to zoom.</p></div>
+<a class="download" href="./mahinda_rajapaksa.glb" download="mahinda_rajapaksa.glb">Download 3D model</a></header>
+<section class="stage" aria-label="Interactive 3D portrait">
+<model-viewer id="portrait" src="./mahinda_rajapaksa.glb" poster="./preview.png"
+ alt="Textured portrait bust of Mahinda Rajapaksa with black hair and moustache, a white shirt and red scarf"
+ camera-controls touch-action="pan-y" camera-orbit="0deg 85deg auto" min-camera-orbit="auto auto 0.16m"
+ environment-image="neutral" exposure="0.8" shadow-intensity="0.35" interaction-prompt="none"
+ loading="eager" reveal="auto"></model-viewer></section>
+<nav aria-label="Portrait views"><button type="button" data-angle="0">Front</button>
+<button type="button" data-angle="40">Three-quarter</button><button type="button" data-angle="85">Profile</button>
+<button type="button" data-angle="180">Back</button><button type="button" id="rotate" aria-pressed="false">Auto rotate</button>
+<span id="status" role="status">Loading model…</span></nav>
+<div class="facts"><span><strong>GLB / glTF 2.0</strong></span><span>1,960,712 bytes — under 2 MB</span>
+<span>58,926 triangles</span><span>2048 × 1024 texture</span></div>
+<footer>Source model: <a href="https://www.headsketch.xyz/uploads/2022/mahindarajapaksha.glb">Headsketch.xyz</a>.
+Adapted with smooth shading and a refined texture for an academic reconstruction exercise. Some fine surface detail is AI assisted and inferred.
+<br><a href="https://github.com/Utkarsh-Sinha0/tds-ga3-mahinda-rajapaksa">Repository and model information</a> ·
+<a href="./validation.json">Validation record</a> · Viewer by Google, <a href="./MODEL_VIEWER_LICENSE.txt">license</a>.
+<noscript><p>JavaScript is needed to rotate the model. You can still download the GLB using the link above.</p></noscript></footer>
+</main>
+<script>
+const portrait=document.getElementById('portrait'),status=document.getElementById('status'),rotate=document.getElementById('rotate');
+portrait.addEventListener('load',()=>status.textContent='Ready — drag to inspect');
+portrait.addEventListener('error',()=>status.textContent='Viewer unavailable. Use the model download above.');
+document.querySelectorAll('[data-angle]').forEach(button=>button.addEventListener('click',()=>{
+portrait.autoRotate=false;rotate.textContent='Auto rotate';rotate.setAttribute('aria-pressed','false');
+portrait.cameraOrbit=`${button.dataset.angle}deg 85deg auto`;portrait.jumpCameraToGoal();}));
+rotate.addEventListener('click',()=>{portrait.autoRotate=!portrait.autoRotate;rotate.textContent=portrait.autoRotate?'Stop rotation':'Auto rotate';rotate.setAttribute('aria-pressed',String(portrait.autoRotate));});
+</script></body></html>
