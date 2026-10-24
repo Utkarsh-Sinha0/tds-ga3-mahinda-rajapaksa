@@ -1,14 +1,18 @@
-# GA3 Question 7 — face morph
+# GA3 Question 7 — guided face morph
 
-[Direct MP4 video](https://utkarsh-sinha0.github.io/tds-ga3-mahinda-rajapaksa/q7_seagal_to_owens.mp4)
+[Direct assignment MP4](https://utkarsh-sinha0.github.io/tds-ga3-mahinda-rajapaksa/q7_seagal_to_owens.mp4)
 
-A synthetic portrait morph from the assignment's Steven Seagal photograph to its Jesse Owens photograph. This is an artificial image transition.
+A synthetic portrait morph from the assignment's Steven Seagal photograph to its Jesse Owens photograph. The original photographs supply the endpoints. A generated intermediate portrait guides the middle of the transition; facial landmark warping and continuous cubic geometry generate the intervening frames.
 
-The video is 57,046 bytes, H.264 in MP4, 384 × 384 pixels, 24 frames per second, 96 frames, and 4 seconds long. It has no audio and uses MP4 fast-start layout. Its SHA-256 is `4427a9cb63ff37b3607247c4f1cc0528698473ae37cee3b3238e5e6e1c852725`.
+- H.264 MP4, 384 x 384 pixels, 60 fps, 300 frames, 5 seconds, no audio.
+- 93,998 bytes, below the strict 100,000-byte limit.
+- MP4 fast-start layout for browser playback.
+- SHA-256: `0bdd366feb9edfb04520ba58d9e04acb976ce80d3ff00b46a49bb2f4e338f699`.
+- The automatic exam check and offline likeness/morph-quality review have not been performed by this repository.
 
 ## Source credits
 
-- [Steven Seagal at Russia Expo](https://commons.wikimedia.org/wiki/File:Steven_Seagal_at_Russia_Expo.jpg), photographed by **Svklimkin**, licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+- [Steven Seagal at Russia Expo](https://commons.wikimedia.org/wiki/File:Steven_Seagal_at_Russia_Expo.jpg), photographed by **Svklimkin**, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 - [Jesse Owens 1936](https://commons.wikimedia.org/wiki/File:Jesse_Owens_1936.jpg), **Acme News Photos**; Wikimedia Commons identifies it as public domain in the United States.
 
-Changes: face alignment, cropping, monochrome conversion, contrast adjustment, landmark-based geometric interpolation, feathered blending, and video compression. Credits and source links are also embedded in the MP4 metadata. No endorsement by the subjects or original photographers is implied.
+Changes: crop and face alignment, monochrome treatment, exposure matching, an AI-generated fictional intermediate portrait, 468-landmark geometric warping, continuous interpolation, feathered compositing, and video compression. Credits and source links are embedded in the MP4 metadata. No endorsement by the subjects or photographers is implied.
